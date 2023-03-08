@@ -16,6 +16,10 @@ namespace SomerenDAL
             
                 conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SomerenDatabase"].ConnectionString);
                 adapter = new SqlDataAdapter();
+
+
+
+            // Test comment
              
         }
 
