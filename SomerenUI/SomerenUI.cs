@@ -14,7 +14,7 @@ namespace SomerenUI
             ShowDashboardPanel();
         }
 
-        private void ShowDashboardPanel()
+        private void ShowDashboardPanel()   
         {
             // hide all other panels
             pnlStudents.Hide();
@@ -29,6 +29,8 @@ namespace SomerenUI
         {
             // hide all other panels
             pnlDashboard.Hide();
+
+            pnlLecturers.Hide();
 
             // show students
             pnlStudents.Show();
@@ -160,7 +162,7 @@ namespace SomerenUI
             }
 
             listViewLecturers.Columns[0].Width = 50;
-            listViewLecturers.Columns[1].Width = 100;
+            listViewLecturers.Columns[1].Width = 200;
             listViewLecturers.Columns[2].Width = 100;
             listViewLecturers.Columns[3].Width = 200;
 
