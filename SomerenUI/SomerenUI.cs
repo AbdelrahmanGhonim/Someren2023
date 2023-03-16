@@ -54,12 +54,31 @@ namespace SomerenUI
             // clear the listview before filling it
             listViewStudents.Clear();
 
+            listViewStudents.Columns.Add("ID", 50);
+            listViewStudents.Columns.Add("name", 100);
+            listViewStudents.Columns.Add("Number", 100);
+            listViewStudents.Columns.Add("DateOfBirth", 150);
+
+
             foreach (Student student in students)
             {
-                ListViewItem li = new ListViewItem(student.Name);
+                
+                ListViewItem li = new ListViewItem(student.Id.ToString());
+                li.SubItems.Add(student.Name.ToString());
+                li.SubItems.Add(student.Number.ToString());
+                li.SubItems.Add(student.BirthDate.ToShortDateString());
+
                 li.Tag = student;   // link student object to listview item
                 listViewStudents.Items.Add(li);
+
             }
+            listViewStudents.Columns[0].Width = 50;
+            listViewStudents.Columns[1].Width = 200;
+            listViewStudents.Columns[2].Width = 200;
+            listViewStudents.Columns[3].Width = 200;
+            listViewStudents.View = View.Details;
+
+
         }
 
         private void dashboardToolStripMenuItem1_Click(object sender, System.EventArgs e)
@@ -75,6 +94,7 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowStudentsPanel();
+          
         }
     }
 }

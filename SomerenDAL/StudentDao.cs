@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
+using System;
 
 namespace SomerenDAL
 {
@@ -9,7 +10,7 @@ namespace SomerenDAL
     {
         public List<Student> GetAllStudents()
         {
-            string query = "SELECT StudentId, Name FROM [TABLE]";
+            string query = "SELECT id,name,studentNumber,dataOfBirth FROM [Students] ORDER BY name ASC";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -22,8 +23,10 @@ namespace SomerenDAL
             {
                 Student student = new Student()
                 {
-                    Number = (int)dr["StudentId"],
-                    Name = dr["Name"].ToString()
+                    Id = (int)dr["id"],
+                    Name = dr["name"].ToString(),
+                    Number = (int)dr["studentNumber"],
+                    BirthDate = (DateTime)dr["dataOfBirth"],
                 };
                 students.Add(student);
             }
