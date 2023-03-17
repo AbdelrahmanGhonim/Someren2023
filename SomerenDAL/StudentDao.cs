@@ -8,14 +8,14 @@ namespace SomerenDAL
 {
     public class StudentDao : BaseDao
     {
-        public List<Student> GetAllStudents()
+        public List<Student> GetAllStudents()  // getting data from database 
         {
             string query = "SELECT id,name,studentNumber,dataOfBirth FROM [Students] ORDER BY name ASC";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Student> ReadTables(DataTable dataTable)
+        private List<Student> ReadTables(DataTable dataTable) // data from database into class
         {
             List<Student> students = new List<Student>();
 

@@ -8,13 +8,13 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
-        public SomerenUI()
+        public SomerenUI() 
         {
             InitializeComponent();
             ShowDashboardPanel();
         }
 
-        private void ShowDashboardPanel()   
+        private void ShowDashboardPanel()  // show Dashboard 
         {
             // hide all other panels
             pnlStudents.Hide();
@@ -64,6 +64,8 @@ namespace SomerenUI
             listViewStudents.Columns.Add("Number", 100);
             listViewStudents.Columns.Add("DateOfBirth", 150);
 
+
+            // displaying students in list 
 
             foreach (Student student in students)
             {
@@ -117,9 +119,10 @@ namespace SomerenUI
             // hide all other panels
             pnlDashboard.Hide();
 
-            // show students
+            
             pnlStudents.Hide();
 
+            // show Lecurer panel 
             pnlLecturers.Show();
 
             try
@@ -149,6 +152,8 @@ namespace SomerenUI
             listViewLecturers.Columns.Add("Name", 100);
             listViewLecturers.Columns.Add("Number", 100);
             listViewLecturers.Columns.Add("DateOfBirth", 200);
+
+            // displaying Lecturers in List 
 
             foreach (Teacher teacher in teachers)
             { 

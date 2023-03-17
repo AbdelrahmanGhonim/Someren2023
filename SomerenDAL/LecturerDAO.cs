@@ -11,13 +11,13 @@ namespace SomerenDAL
 {
     public class LecturerDAO : BaseDao
     {
-        public List<Teacher> GetAllTeachers()
+        public List<Teacher> GetAllTeachers() // getting data from database 
         {
             string query = "SELECT id, name, lecturerNumber, dataOfBirth FROM Lecturers";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
-        private List<Teacher> ReadTables(DataTable dataTable)
+        private List<Teacher> ReadTables(DataTable dataTable) // data from database into class
         {
             List<Teacher> teachers = new List<Teacher>();
 
