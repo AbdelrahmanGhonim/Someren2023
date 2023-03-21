@@ -1,14 +1,14 @@
-using SomerenService;
 using SomerenModel;
-using System.Windows.Forms;
-using System.Collections.Generic;
+using SomerenService;
 using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
-        public SomerenUI() 
+        public SomerenUI()
         {
             InitializeComponent();
             ShowDashboardPanel();
@@ -21,6 +21,10 @@ namespace SomerenUI
 
             pnlLecturers.Hide();
 
+            pnlCashRegister.Hide();
+
+            pnlDrinks.Hide();
+
             // show dashboard
             pnlDashboard.Show();
         }
@@ -31,6 +35,10 @@ namespace SomerenUI
             pnlDashboard.Hide();
 
             pnlLecturers.Hide();
+
+            pnlCashRegister.Hide();
+
+            pnlDrinks.Hide();
 
             // show students
             pnlStudents.Show();
@@ -69,7 +77,7 @@ namespace SomerenUI
 
             foreach (Student student in students)
             {
-                
+
                 ListViewItem li = new ListViewItem(student.Id.ToString());
                 li.SubItems.Add(student.Name.ToString());
                 li.SubItems.Add(student.Number.ToString());
@@ -101,7 +109,7 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowStudentsPanel();
-          
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -119,8 +127,11 @@ namespace SomerenUI
             // hide all other panels
             pnlDashboard.Hide();
 
-            
             pnlStudents.Hide();
+
+            pnlCashRegister.Hide();
+
+            pnlDrinks.Hide();
 
             // show Lecurer panel 
             pnlLecturers.Show();
@@ -156,7 +167,7 @@ namespace SomerenUI
             // displaying Lecturers in List 
 
             foreach (Teacher teacher in teachers)
-            { 
+            {
                 ListViewItem li = new ListViewItem(teacher.Id.ToString());
                 li.SubItems.Add(teacher.Name.ToString());
                 li.SubItems.Add(teacher.Number.ToString());
@@ -172,6 +183,118 @@ namespace SomerenUI
             listViewLecturers.Columns[3].Width = 200;
 
             listViewLecturers.View = View.Details;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            // unused
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            // usused
+        }
+
+        private void drinksSuppliesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showDrinkPanel();
+        }
+
+        public void showDrinkPanel()
+        {
+            // hide unused panels
+            pnlDashboard.Hide();
+
+            pnlLecturers.Hide();
+
+            pnlStudents.Hide();
+
+            pnlCashRegister.Hide();
+
+            // show students
+            pnlDrinks.Show();
+
+            try
+            {
+                List<Drink> drinks = GetDrinks();
+                DisplayDrinks(drinks);
+            }
+            catch (Exception drinks)
+            {
+                MessageBox.Show("Something went wrong while loading the drinks: " + drinks.Message);
+            }
+        }
+        private List<Drink> GetDrinks()
+        {
+            DrinkService drinkService = new DrinkService();
+            List<Drink> drinks = drinkService.GetDrinks();
+            return drinks;
+        }
+
+        private void DisplayDrinks(List<Drink> drinks)
+        {
+            // clear the listview before filling it
+            listViewDrinks.Clear();
+
+            listViewDrinks.Columns.Add("Name", 150);
+            listViewDrinks.Columns.Add("Price", 100);
+            listViewDrinks.Columns.Add("AmountInStock", 100);
+            listViewDrinks.Columns.Add("IsAlcoholic", 150);
+
+            // displaying Lecturers in List 
+
+            foreach (Drink drink in drinks)
+            {
+                ListViewItem li = new ListViewItem(drink.Name);
+                li.SubItems.Add(drink.Price.ToString());
+                li.SubItems.Add(drink.Amount.ToString());
+                li.SubItems.Add(drink.IsAlcoholic);
+
+                li.Tag = drink;
+                listViewDrinks.Items.Add(li);
+            }
+
+            listViewDrinks.Columns[0].Width = 150;
+            listViewDrinks.Columns[1].Width = 100;
+            listViewDrinks.Columns[2].Width = 100;
+            listViewDrinks.Columns[3].Width = 150;
+
+            listViewDrinks.View = View.Details;
+        }
+
+        private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // hide unused panels
+            pnlDashboard.Hide();
+
+            pnlLecturers.Hide();
+
+            pnlStudents.Hide();
+
+            pnlDrinks.Hide();
+
+            // show students
+            pnlCashRegister.Show();
+        }
+
+        private void btAddDrinks_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btDeleteDrinks_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btUpdateDrinks_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btCheckout_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
