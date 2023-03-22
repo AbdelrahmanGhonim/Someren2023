@@ -2,7 +2,9 @@ using SomerenModel;
 using SomerenService;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SomerenUI
 {
@@ -240,15 +242,21 @@ namespace SomerenUI
             listViewDrinks.Columns.Add("Price", 100);
             listViewDrinks.Columns.Add("AmountInStock", 100);
             listViewDrinks.Columns.Add("IsAlcoholic", 150);
+            listViewDrinks.Columns.Add("Stock", 200);
 
             // displaying Lecturers in List 
 
             foreach (Drink drink in drinks)
             {
                 ListViewItem li = new ListViewItem(drink.Name);
-                li.SubItems.Add(drink.Price.ToString());
+                li.SubItems.Add(drink.Price.ToString() + "€");
                 li.SubItems.Add(drink.Amount.ToString());
                 li.SubItems.Add(drink.IsAlcoholic);
+
+                if (drink.Amount >= 10)
+                    li.SubItems.Add("Stock sufficient");
+                else
+                    li.SubItems.Add("Stock nearly depleted");
 
                 li.Tag = drink;
                 listViewDrinks.Items.Add(li);
@@ -258,6 +266,7 @@ namespace SomerenUI
             listViewDrinks.Columns[1].Width = 100;
             listViewDrinks.Columns[2].Width = 100;
             listViewDrinks.Columns[3].Width = 150;
+            listViewDrinks.Columns[4].Width = 200;
 
             listViewDrinks.View = View.Details;
         }
@@ -279,22 +288,97 @@ namespace SomerenUI
 
         private void btAddDrinks_Click(object sender, EventArgs e)
         {
+            Drink drink = GettingDataOfDrink();
+
+            try
+            {
+                DrinkService drinkService = new DrinkService();
+                drinkService.AddDrink(drink);
+            }
+            catch (Exception drinkexp)
+            {
+                MessageBox.Show("Something went wrong while adding drink! " + drinkexp.Message, "Error");
+            }
+
+            UpdateDrinks();
 
         }
 
         private void btDeleteDrinks_Click(object sender, EventArgs e)
         {
+            Drink drink = GettingDataOfDrink();
 
+            try
+            {
+                if (drink.Amount == 0)
+                    throw new Exception("There is no more left!");
+
+                DrinkService drinkService = new DrinkService();
+                drinkService.DeleteDrink(drink);
+            }
+            catch (Exception drinkexp)
+            {
+                MessageBox.Show("Something went wrong while removing drink! " + drinkexp.Message, "Error");
+            }
+
+            UpdateDrinks();
         }
 
         private void btUpdateDrinks_Click(object sender, EventArgs e)
         {
+            Drink drink = GettingDataOfDrink();
 
+            try
+            {
+                DrinkService drinkService = new DrinkService();
+                drinkService.UpdateDrink(drink);
+            }
+            catch (Exception drinkexp)
+            {
+                MessageBox.Show("Something went wrong! " + drinkexp.Message, "Error");  
+            }
+
+            UpdateDrinks();
         }
 
         private void btCheckout_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void UpdateDrinks()
+        {
+            List<Drink> drinks = GetDrinks();
+            DisplayDrinks(drinks);
+        }
+
+        private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListViewItem listViewItem = listViewDrinks.SelectedItems[0];
+            Drink selectedDrink = (Drink)listViewItem.Tag;
+
+            txtAmountDrinks.Text = selectedDrink.Amount.ToString();
+            txtNameDrinks.Text = selectedDrink.Name.ToString();
+            txtPriceDrinks.Text = selectedDrink.Price.ToString();
+            if(selectedDrink.IsAlcoholic == "Alcoholic")
+                rbAlkoholicDrinks.Checked = true; 
+            else
+                rbNonAlkoholicDrinks.Checked = true;
+
+        }
+
+        private Drink GettingDataOfDrink()
+        {
+            Drink drink = new Drink();
+            drink.Name = txtNameDrinks.Text;
+            drink.Price = decimal.Parse(txtPriceDrinks.Text);
+            drink.Amount = int.Parse(txtAmountDrinks.Text);
+            if (rbAlkoholicDrinks.Checked)
+                drink.IsAlcoholic = "Alcoholic";
+            else
+                drink.IsAlcoholic = "non Alcoholic";
+
+            return drink;
         }
     }
 }

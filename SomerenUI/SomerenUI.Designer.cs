@@ -410,10 +410,12 @@
             this.listViewDrinks.FullRowSelect = true;
             this.listViewDrinks.Location = new System.Drawing.Point(87, 9);
             this.listViewDrinks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listViewDrinks.MultiSelect = false;
             this.listViewDrinks.Name = "listViewDrinks";
             this.listViewDrinks.Size = new System.Drawing.Size(875, 246);
             this.listViewDrinks.TabIndex = 1;
             this.listViewDrinks.UseCompatibleStateImageBehavior = false;
+            this.listViewDrinks.SelectedIndexChanged += new System.EventHandler(this.listViewDrinks_SelectedIndexChanged);
             // 
             // pnlCashRegister
             // 
@@ -424,7 +426,7 @@
             this.pnlCashRegister.Controls.Add(this.label7);
             this.pnlCashRegister.Controls.Add(this.listViewDrinksCashRegister);
             this.pnlCashRegister.Controls.Add(this.listViewStudentsCashRegister);
-            this.pnlCashRegister.Location = new System.Drawing.Point(14, 38);
+            this.pnlCashRegister.Location = new System.Drawing.Point(14, 68);
             this.pnlCashRegister.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlCashRegister.Name = "pnlCashRegister";
             this.pnlCashRegister.Size = new System.Drawing.Size(1072, 621);
