@@ -17,10 +17,15 @@ namespace SomerenService
             drinksdb = new DrinksDAO();
         }
 
-        public List<Drink> GetDrinks()
+        public List<Drink> GetDrinks() 
         {
             List<Drink> drinks = drinksdb.GetAllDrinks();
             return drinks;
+        }
+        public int UpdateAmountInStock(int updatedAmount)
+        {
+            int updateAmount = drinksdb.UpdateAmountInStock(updatedAmount);
+            return updateAmount;
         }
     }
 }
