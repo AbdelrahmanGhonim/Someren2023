@@ -443,11 +443,11 @@
             this.pnlCashRegister.Controls.Add(this.label7);
             this.pnlCashRegister.Controls.Add(this.listViewDrinksCashRegister);
             this.pnlCashRegister.Controls.Add(this.listViewStudentsCashRegister);
-<
+
             this.pnlCashRegister.Location = new System.Drawing.Point(23, 61);
             this.pnlCashRegister.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-=
->
+
+
             this.pnlCashRegister.Name = "pnlCashRegister";
             this.pnlCashRegister.Size = new System.Drawing.Size(1742, 994);
             this.pnlCashRegister.TabIndex = 16;

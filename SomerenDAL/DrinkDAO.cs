@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using SomerenModel;
+﻿using SomerenModel;
 using System;
-using Microsoft.Win32.SafeHandles;
-using System.Configuration;
-using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SomerenDAL
 {
@@ -63,6 +60,7 @@ namespace SomerenDAL
                 };
                 drinks.Add(drink);
             }
+
             return drinks;
         }
 
@@ -71,7 +69,7 @@ namespace SomerenDAL
             conn.Open();
             SqlCommand command = new SqlCommand(
                 "UPDATE Drinks SET Price = @Price, AmountInStock = @Amount, IsAlcoholic = @IsAlcoholic WHERE Name = @Name", conn);
-            
+
 
             // Preventing SQL injections
             command.Parameters.AddWithValue("@Price", drink.Price);
@@ -84,8 +82,8 @@ namespace SomerenDAL
 
             if (nrOfRowsAffected == 0)
                 throw new Exception("Drink was not updated!");
-        }  
-        
+        }
+
         public void AddDrink(Drink drink)
         {
             conn.Open();
@@ -117,6 +115,7 @@ namespace SomerenDAL
 
             if (nrOfRowsAffected == 0)
                 throw new Exception("Drink was not removed!");
-        }
+        } 
+
     }
 }

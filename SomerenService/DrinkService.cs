@@ -40,8 +40,9 @@ namespace SomerenService
             {
 
                 throw;
-            }  
+            }
 
+        }
 
         public void UpdateDrink(Drink drink)
         {
@@ -57,5 +58,6 @@ namespace SomerenService
         {
             drinksdb.DeleteDrink(drink);
         }
+        
     }
 }
