@@ -12,6 +12,5 @@ namespace SomerenModel
         public decimal Price { get; set; }
         public string IsAlcoholic { get; set; }
         public int Amount { get; set; }
-        public int totalSales { get; set; }
     }
 }
