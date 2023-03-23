@@ -370,6 +370,7 @@ namespace SomerenUI
                 // Get the text values of the selected items
                 Student student = (Student)selectedStudent.Tag;
                 Drink drink = (Drink)selectedDrink.Tag;
+               
                 //Drink drink1 = new Drink();
                 //drink1.Price= decimal.Parse(selectedDrink.SubItems[1].Text);
                 lbAmountToPay.Text = $"{drink.Price}";
@@ -382,12 +383,17 @@ namespace SomerenUI
 
                 // !!todo: decrease amount/stck from selected drink
                 drink.Amount--;
-                DrinksDAO drinksDAO = new DrinksDAO();
-                drinksDAO.UpdateAmountInStock(drink);
+                DrinkService drinkService = new DrinkService();
+                drinkService.UpdateAmountInStock(drink);
                 
                 // Refresh
                 List<Drink> drinks = GetDrinks();
                 DisplayDrinksChashRegister(drinks);
+
+                SalesDrinks sales = new SalesDrinks();
+                sales.StudentId = student.Id;
+                sales.DrinksName = drink.Name;
+                drinkService.DrinksSold(sales);
             }
             else
             {

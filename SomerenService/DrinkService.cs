@@ -2,6 +2,7 @@
 using SomerenModel;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,24 @@ namespace SomerenService
             List<Drink> drinks = drinksdb.GetAllDrinks();
             return drinks;
         }
-        public int UpdateAmountInStock(int updatedAmount)
+        public void  UpdateAmountInStock(Drink drinkAmoiunt)
         {
-            int updateAmount = drinksdb.UpdateAmountInStock(updatedAmount);
-            return updateAmount;
+             drinksdb.UpdateAmountInStock(drinkAmoiunt);
+             
+        }
+
+        public void DrinksSold(SalesDrinks salesDrinks)
+        {
+            try
+            {
+                drinksdb.AddSalesDrink(salesDrinks);
+            }
+            catch (SqlException ex)
+            {
+
+                throw;
+            }
+            
         }
     }
 }

@@ -18,6 +18,16 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
+        public void AddSalesDrink(SalesDrinks salesDrinks)
+        {
+            string query = ("INSERT INTO SalesDrinks (StudentId, drinkName) VALUES (@StudentId, @drinkName);");
+            SqlParameter[] sqlParameters = {
+            new SqlParameter("@StudentId", salesDrinks.StudentId),
+            new SqlParameter("@drinkName", salesDrinks.DrinksName),
+            };
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
         public void UpdateAmountInStock(Drink drink)
         {
 
