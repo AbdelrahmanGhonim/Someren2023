@@ -248,6 +248,8 @@ namespace SomerenUI
 
             // displaying Lecturers in List 
 
+            DrinkService drinkService = new DrinkService();
+
             foreach (Drink drink in drinks)
             {
                 ListViewItem li = new ListViewItem(drink.Name);
@@ -259,6 +261,7 @@ namespace SomerenUI
                     li.SubItems.Add("Stock sufficient");
                 else
                     li.SubItems.Add("Stock nearly depleted");
+
 
                 li.Tag = drink;
                 listViewDrinks.Items.Add(li);
@@ -338,7 +341,7 @@ namespace SomerenUI
             foreach (Drink drink in drinks)
             {
                 ListViewItem li = new ListViewItem(drink.Name);
-                li.SubItems.Add(drink.Price.ToString());
+                li.SubItems.Add(drink.Price.ToString() + "€");
                 li.SubItems.Add(drink.Amount.ToString());
                 li.SubItems.Add(drink.IsAlcoholic);
 
@@ -358,10 +361,9 @@ namespace SomerenUI
 
         private void btAddDrinks_Click(object sender, EventArgs e)
         {
-            Drink drink = GettingDataOfDrink();
-
             try
             {
+                Drink drink = GettingDataOfDrink();
                 DrinkService drinkService = new DrinkService();
                 drinkService.AddDrink(drink);
             }
@@ -376,10 +378,9 @@ namespace SomerenUI
 
         private void btDeleteDrinks_Click(object sender, EventArgs e)
         {
-            Drink drink = GettingDataOfDrink();
-
             try
             {
+                Drink drink = GettingDataOfDrink();
                 if (drink.Amount == 0)
                     throw new Exception("There is no more left!");
 
@@ -396,10 +397,9 @@ namespace SomerenUI
 
         private void btUpdateDrinks_Click(object sender, EventArgs e)
         {
-            Drink drink = GettingDataOfDrink();
-
             try
             {
+                Drink drink = GettingDataOfDrink();
                 DrinkService drinkService = new DrinkService();
                 drinkService.UpdateDrink(drink);
             }
@@ -488,10 +488,15 @@ namespace SomerenUI
             drink.Name = txtNameDrinks.Text;
             drink.Price = decimal.Parse(txtPriceDrinks.Text);
             drink.Amount = int.Parse(txtAmountDrinks.Text);
-            if (rbAlkoholicDrinks.Checked)
-                drink.IsAlcoholic = "Alcoholic";
+            if (rbAlkoholicDrinks.Checked || rbNonAlkoholicDrinks.Checked)
+            {
+                if (rbAlkoholicDrinks.Checked)
+                    drink.IsAlcoholic = "Alcoholic";
+                else
+                    drink.IsAlcoholic = "non Alcoholic";
+            }
             else
-                drink.IsAlcoholic = "non Alcoholic";
+                throw new Exception("You need to choose if drink is Alcoholic or not");
 
             return drink;
         }
