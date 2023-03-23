@@ -3,6 +3,9 @@ using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
 using System;
+using Microsoft.Win32.SafeHandles;
+using System.Configuration;
+using System.Collections;
 
 namespace SomerenDAL
 {
@@ -14,6 +17,36 @@ namespace SomerenDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
+
+        public void AddSalesDrink(SalesDrinks salesDrinks)
+        {
+            string query = ("INSERT INTO SalesDrinks (StudentId, drinkName) VALUES (@StudentId, @drinkName);");
+            SqlParameter[] sqlParameters = {
+            new SqlParameter("@StudentId", salesDrinks.StudentId),
+            new SqlParameter("@drinkName", salesDrinks.DrinksName),
+            };
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void UpdateAmountInStock(Drink drink)
+        {
+
+            //using (SqlConnection connection = new SqlConnection()) 
+            //{
+            //   conn.Open();
+
+            string query = "UPDATE [Drinks] SET AmountInStock=@AmountInStock WHERE Name=@Name";
+            SqlParameter[] sqlParameters =
+            {
+                new SqlParameter("@AmountInStock", drink.Amount),
+                new SqlParameter("@Name", drink.Name)
+            };
+            ExecuteEditQuery(query, sqlParameters);
+
+            //                int nrOfRowsAffected = command.ExecuteNonQuery();
+            //}
+        }
+
 
         private List<Drink> ReadTables(DataTable dataTable) // data from database into class
         {
