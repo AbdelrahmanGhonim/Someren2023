@@ -354,17 +354,19 @@ namespace SomerenUI
 
         private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem listViewItem = listViewDrinks.SelectedItems[0];
-            Drink selectedDrink = (Drink)listViewItem.Tag;
+            if(listViewDrinks.SelectedItems.Count > 0)
+            {
+                ListViewItem listViewItem = listViewDrinks.SelectedItems[0];
+                Drink selectedDrink = (Drink)listViewItem.Tag;
 
-            txtAmountDrinks.Text = selectedDrink.Amount.ToString();
-            txtNameDrinks.Text = selectedDrink.Name.ToString();
-            txtPriceDrinks.Text = selectedDrink.Price.ToString();
-            if(selectedDrink.IsAlcoholic == "Alcoholic")
-                rbAlkoholicDrinks.Checked = true; 
-            else
-                rbNonAlkoholicDrinks.Checked = true;
-
+                txtAmountDrinks.Text = selectedDrink.Amount.ToString();
+                txtNameDrinks.Text = selectedDrink.Name.ToString();
+                txtPriceDrinks.Text = selectedDrink.Price.ToString();
+                if (selectedDrink.IsAlcoholic == "Alcoholic")
+                    rbAlkoholicDrinks.Checked = true;
+                else
+                    rbNonAlkoholicDrinks.Checked = true;
+            }
         }
 
         private Drink GettingDataOfDrink()
