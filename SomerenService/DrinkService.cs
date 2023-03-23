@@ -22,5 +22,20 @@ namespace SomerenService
             List<Drink> drinks = drinksdb.GetAllDrinks();
             return drinks;
         }
+
+        public void UpdateDrink(Drink drink)
+        {
+            drinksdb.UpdateDrink(drink);
+        }
+
+        public void AddDrink(Drink drink)
+        {
+            drinksdb.AddDrink(drink);
+        }
+        
+        public void DeleteDrink(Drink drink)
+        {
+            drinksdb.DeleteDrink(drink);
+        }
     }
 }
