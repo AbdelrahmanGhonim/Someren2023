@@ -21,9 +21,8 @@ namespace SomerenUI
             ShowDashboardPanel();
         }
 
-        private void ShowDashboardPanel()  // show Dashboard 
+        public void HidingPanels()
         {
-            // hide all other panels
             pnlStudents.Hide();
 
             pnlLecturers.Hide();
@@ -32,6 +31,20 @@ namespace SomerenUI
 
             pnlDrinks.Hide();
 
+            pnlActivities.Hide();
+
+            pnlDashboard.Hide();
+
+            pnlLecturers.Hide();
+
+            pnlSupervisors.Hide();
+        }
+
+        private void ShowDashboardPanel()  // show Dashboard 
+        {
+            // hide all other panels
+            HidingPanels();
+
             // show dashboard
             pnlDashboard.Show();
         }
@@ -39,13 +52,7 @@ namespace SomerenUI
         private void ShowStudentsPanel()
         {
             // hide all other panels
-            pnlDashboard.Hide();
-
-            pnlLecturers.Hide();
-
-            pnlCashRegister.Hide();
-
-            pnlDrinks.Hide();
+            HidingPanels();
 
             // show students
             pnlStudents.Show();
@@ -132,13 +139,7 @@ namespace SomerenUI
         private void ShowLecturersPanel()
         {
             // hide all other panels
-            pnlDashboard.Hide();
-
-            pnlStudents.Hide();
-
-            pnlCashRegister.Hide();
-
-            pnlDrinks.Hide();
+            HidingPanels();
 
             // show Lecurer panel 
             pnlLecturers.Show();
@@ -210,10 +211,7 @@ namespace SomerenUI
         public void showDrinkPanel()
         {
             // hide unused panels
-            pnlDashboard.Hide();
-            pnlLecturers.Hide();
-            pnlStudents.Hide();
-            pnlCashRegister.Hide();
+            HidingPanels();
 
             // show students
             pnlDrinks.Show();
@@ -279,10 +277,7 @@ namespace SomerenUI
         private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // hide unused panels
-            pnlDashboard.Hide();
-            pnlLecturers.Hide();
-            pnlStudents.Hide();
-            pnlDrinks.Hide();
+            HidingPanels();
 
             // show students
             pnlCashRegister.Show();
@@ -499,6 +494,74 @@ namespace SomerenUI
                 throw new Exception("You need to choose if drink is Alcoholic or not");
 
             return drink;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void listViewActivites_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btActivitiesAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btActivitiesRemove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btActivitiesUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // hiding all panels
+            HidingPanels();
+
+            // showing activities panel
+            pnlActivities.Show();
+        }
+
+        private void activitySupervisorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // hiding all panels
+            HidingPanels();
+
+            // showing activities panel
+            pnlSupervisors.Show();
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewSupervisorsActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewSupervisorsLecturers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btSupervisorsAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btSupervisorsRemove_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
