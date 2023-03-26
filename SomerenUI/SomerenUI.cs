@@ -7,8 +7,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 
 using System.Runtime.CompilerServices;
-
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SomerenUI
@@ -400,7 +401,7 @@ namespace SomerenUI
             }
             catch (Exception drinkexp)
             {
-                MessageBox.Show("Something went wrong! " + drinkexp.Message, "Error");  
+                MessageBox.Show("Something went wrong! " + drinkexp.Message, "Error");
             }
 
             UpdateDrinks();
@@ -417,22 +418,18 @@ namespace SomerenUI
                 // Get the text values of the selected items
                 Student student = (Student)selectedStudent.Tag;
                 Drink drink = (Drink)selectedDrink.Tag;
-               
-                //Drink drink1 = new Drink();
-                //drink1.Price= decimal.Parse(selectedDrink.SubItems[1].Text);
+
+
                 lbAmountToPay.Text = $"{drink.Price}";
 
-                // Do something with the selected items
                 MessageBox.Show("Selected student: " + student.Name + "\nSelected drink: " + drink.Name + "\n Total Price: " + drink.Price);
-                // when smth sold it should decrease one
-                //drink1.Amount = int.Parse(selectedDrink.SubItems[2].Text);
-                //selectedDrink.SubItems[2].Text = (drink1.Amount - 1).ToString();// not working :(
+
 
                 // !!todo: decrease amount/stck from selected drink
                 drink.Amount--;
                 DrinkService drinkService = new DrinkService();
                 drinkService.UpdateAmountInStock(drink);
-                
+
                 // Refresh
                 List<Drink> drinks = GetDrinks();
                 DisplayDrinksChashRegister(drinks);
@@ -462,7 +459,7 @@ namespace SomerenUI
 
         private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(listViewDrinks.SelectedItems.Count > 0)
+            if (listViewDrinks.SelectedItems.Count > 0)
             {
                 ListViewItem listViewItem = listViewDrinks.SelectedItems[0];
                 Drink selectedDrink = (Drink)listViewItem.Tag;
@@ -503,21 +500,117 @@ namespace SomerenUI
 
         private void listViewActivites_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           
         }
+        public List<Activities> GetActivities()
+        { 
+        ActivityService activity=new ActivityService();
+        List<Activities> activities=activity.GetActivities();
+            return activities;
+        }
+
+        public void DisplayActivities(List<Activities> activity)
+        {
+            listViewActivites.Clear();
+
+            listViewActivites.Columns.Add("ID", 150);
+            listViewActivites.Columns.Add("Description", 200);
+            listViewActivites.Columns.Add("StartDateTime", 200);
+            listViewActivites.Columns.Add("EndDateTime", 200);
+
+            // displaying activities in List 
+
+            foreach (Activities activities in activity )
+            {
+                ListViewItem li = new ListViewItem(activities.ID.ToString());
+                li.SubItems.Add(activities.Description);
+                li.SubItems.Add(activities.StartDateTime.ToShortDateString());
+                li.SubItems.Add(activities.EndDateTime.ToShortDateString());
+
+                li.Tag = activities;
+                listViewActivites.Items.Add(li);
+            }
+
+            listViewActivites.Columns[0].Width = 200;
+            listViewActivites.Columns[1].Width = 200;
+            listViewActivites.Columns[2].Width = 200;
+            listViewActivites.Columns[3].Width = 200;
+
+            listViewActivites.View = View.Details;
+        }
+    
 
         private void btActivitiesAdd_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Activities activities = GettingDataOfActivity();
+                ActivityService activityService = new ActivityService();
+                activityService.AddActivity(activities);
 
+                // refresh
+                List<Activities> activity = GetActivities();
+                DisplayActivities(activity);
+            }
+            catch (Exception activityexp)
+            {
+                MessageBox.Show("Something went wrong while adding activity! " + activityexp.Message, "Error");
+            }
+
+
+        }
+
+        private Activities GettingDataOfActivity()
+        {
+            Activities activities = new Activities();
+            activities.ID = int.Parse(txtActivitiesId.Text);
+            activities.Description = txtActivitiesDescription.Text;
+            activities.StartDateTime = DateTime.Parse(dateActivitiesStart.Text);
+            activities.EndDateTime = DateTime.Parse(dateActivitiesEnd.Text);
+            return activities;
         }
 
         private void btActivitiesRemove_Click(object sender, EventArgs e)
         {
+            Activities activities = new Activities();
+
+            if (listViewActivites.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewActivites.SelectedItems[0];
+                activities.ID = Convert.ToInt32(selectedItem.SubItems[0].Text);
+             activities.Description  = selectedItem.SubItems[1].Text;
+                txtActivitiesId.Text = activities.ID.ToString();
+                txtActivitiesDescription.Text = activities.Description;
+
+            }
+            ActivityService activityService = new ActivityService();
+
+            DialogResult result = MessageBox.Show("Are you sure you want to remove this activity?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                activityService.RemoveActivity(activities);
+            }
+            List<Activities> activity = GetActivities();
+            DisplayActivities(activity);
 
         }
 
         private void btActivitiesUpdate_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Activities activities = GettingDataOfActivity();
+                ActivityService activityService = new ActivityService();
+                activityService.UpdateActivity(activities);
+            }
+            catch (Exception drinkexp)
+            {
+                MessageBox.Show("Something went wrong! " + drinkexp.Message, "Error");
+            }
+
+            List<Activities> activity = GetActivities();
+            DisplayActivities(activity);
 
         }
 
@@ -528,7 +621,23 @@ namespace SomerenUI
 
             // showing activities panel
             pnlActivities.Show();
+            ShowActivities();
+
         }
+
+        private void ShowActivities()
+        {
+            try
+            {
+                List<Activities> activities = GetActivities();
+                DisplayActivities(activities);
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Something went wrong while loading the activities: " + x.Message);
+            }
+        }
+            
 
         private void activitySupervisorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -560,6 +669,21 @@ namespace SomerenUI
         }
 
         private void btSupervisorsRemove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void listViewDrinksCashRegister_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SomerenUI_Load(object sender, EventArgs e)
         {
 
         }
