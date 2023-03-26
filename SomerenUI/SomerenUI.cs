@@ -81,6 +81,7 @@ namespace SomerenUI
         {
             // clear the listview before filling it
             listViewStudents.Clear();
+            listViewStudents.FullRowSelect = true;
 
             listViewStudents.Columns.Add("ID", 50);
             listViewStudents.Columns.Add("name", 100);
@@ -167,6 +168,7 @@ namespace SomerenUI
         {
             // clear the listview before filling it
             listViewLecturers.Clear();
+            listViewLecturers.FullRowSelect = true;
 
             listViewLecturers.Columns.Add("ID", 50);
             listViewLecturers.Columns.Add("Name", 100);
@@ -501,7 +503,15 @@ namespace SomerenUI
 
         private void listViewActivites_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            if(listViewActivites.SelectedItems.Count > 0)
+            {
+                ListViewItem listViewItem = listViewActivites.SelectedItems[0];
+                Activities selectedActivity = (Activities)listViewItem.Tag;
+                txtActivitiesId.Text = selectedActivity.ID.ToString();
+                txtActivitiesDescription.Text = selectedActivity.Description;
+                dateActivitiesEnd.Value = selectedActivity.EndDateTime;
+                dateActivitiesStart.Value = selectedActivity.StartDateTime;
+            }
         }
         public List<Activities> GetActivities()
         { 
@@ -647,6 +657,8 @@ namespace SomerenUI
 
             // showing activities panel
             pnlSupervisors.Show();
+            rbSupervisorsSupervisors.Checked = true;
+            ShowSupervisors();
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -656,7 +668,7 @@ namespace SomerenUI
 
         private void listViewSupervisorsActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            CheckingActivity();
         }
 
         private void listViewSupervisorsLecturers_SelectedIndexChanged(object sender, EventArgs e)
@@ -666,12 +678,60 @@ namespace SomerenUI
 
         private void btSupervisorsAdd_Click(object sender, EventArgs e)
         {
+            ListViewItem selectedActivity = listViewSupervisorsActivities.SelectedItems[0];
+            ListViewItem selectedSupervisor = listViewSupervisorsLecturers.SelectedItems[0];
 
+            Activities activity = (Activities)selectedActivity.Tag;
+            Supervisor supervisor = (Supervisor)selectedSupervisor.Tag;
+
+            try
+            {
+                supervisor.ActivityId = activity.ID;
+
+                TeacherService teacherService = new TeacherService();
+
+                teacherService.AddSupervisor(supervisor);
+            }
+            catch (Exception activityexp)
+            {
+                MessageBox.Show("Something went wrong! " + activityexp.Message, "Error");
+            }
+
+            ShowSupervisors();
         }
 
         private void btSupervisorsRemove_Click(object sender, EventArgs e)
         {
+            ListViewItem selectedActivity = listViewSupervisorsActivities.SelectedItems[0];
+            ListViewItem selectedSupervisor = listViewSupervisorsLecturers.SelectedItems[0];
 
+            Activities activity = (Activities)selectedActivity.Tag;
+            Supervisor supervisor = (Supervisor)selectedSupervisor.Tag;
+
+            try
+            {
+
+                supervisor.ActivityName = "null";
+
+                TeacherService teacherService = new TeacherService();
+
+                DialogResult result = MessageBox.Show(string.Format($"Are you sure you wish to remove {supervisor.Name} as a Supervisor?", selectedSupervisor, selectedActivity), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    teacherService.RemoveSupervisor(supervisor);
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+            catch (Exception activityexp)
+            {
+                MessageBox.Show("Something went wrong! " + activityexp.Message, "Error");
+            }
+
+            ShowSupervisors();
         }
 
 
@@ -698,6 +758,138 @@ namespace SomerenUI
         {
 
 
+        }
+
+        private void ShowSupervisors()
+        {
+            List<Activities> activities = GetActivities();
+            DisplayActivitiesInSupervisors(activities);
+            List<Supervisor> supervisors = GetSupervisors();
+            DisplayAllSupervisorsInSupervisors(supervisors);
+        }
+
+        private List<Supervisor> GetSupervisors()
+        {
+            TeacherService teacherService = new TeacherService();
+            List<Supervisor> supervisors = teacherService.GetSupervisors();
+
+            return supervisors;
+        }
+
+        private void DisplaySupervisorsForActivity(int activityID) 
+        {
+            TeacherService teacherService = new TeacherService();
+            List<Supervisor> supervisors1 = teacherService.GetSupervisors();
+            List<Supervisor> supervisors = new List<Supervisor>();
+
+           foreach (Supervisor supervisor in supervisors1)
+           {
+                if (supervisor.ActivityId == activityID)
+                    supervisors.Add(supervisor);
+           }
+
+            DisplayAllSupervisorsInSupervisors(supervisors);
+        }
+
+        private void DisplaySupervisorsForNonActivity(int activityID)
+        {
+            TeacherService teacherService = new TeacherService();
+            List<Supervisor> supervisors1 = teacherService.GetSupervisors();
+            List<Supervisor> supervisors = new List<Supervisor>();
+
+            foreach (Supervisor supervisor in supervisors1)
+            {
+                if (supervisor.ActivityId != activityID)
+                    supervisors.Add(supervisor);
+            }
+
+            DisplayAllSupervisorsInSupervisors(supervisors);
+        }
+
+        private void DisplayAllSupervisorsInSupervisors(List<Supervisor> supervisors)
+        {
+            listViewSupervisorsLecturers.Clear();
+
+            listViewSupervisorsLecturers.Columns.Add("Name", 150);
+            listViewSupervisorsLecturers.Columns.Add("Number", 200);
+            listViewSupervisorsLecturers.Columns.Add("DateOfBirth", 200);
+            listViewSupervisorsLecturers.Columns.Add("ActivityName", 200);
+
+            // displaying activities in List 
+
+            foreach (Supervisor supervisor in supervisors)
+            {
+                ListViewItem li = new ListViewItem(supervisor.Name.ToString());
+                li.SubItems.Add(supervisor.Number.ToString());
+                li.SubItems.Add(supervisor.DateOfBirth.ToString());
+                li.SubItems.Add(supervisor.ActivityName);
+
+                li.Tag = supervisor;
+                listViewSupervisorsLecturers.Items.Add(li);
+            }
+
+            listViewSupervisorsLecturers.Columns[0].Width = 200;
+            listViewSupervisorsLecturers.Columns[1].Width = 200;
+            listViewSupervisorsLecturers.Columns[2].Width = 200;
+            listViewSupervisorsLecturers.Columns[3].Width = 200;
+
+            listViewSupervisorsLecturers.View = View.Details;
+        }
+
+        private void DisplayActivitiesInSupervisors(List<Activities> activity)
+        {
+            listViewSupervisorsActivities.Clear();
+
+            listViewSupervisorsActivities.Columns.Add("ID", 150);
+            listViewSupervisorsActivities.Columns.Add("Description", 200);
+            listViewSupervisorsActivities.Columns.Add("StartDateTime", 200);
+            listViewSupervisorsActivities.Columns.Add("EndDateTime", 200);
+
+            // displaying activities in List 
+
+            foreach (Activities activities in activity)
+            {
+                ListViewItem li = new ListViewItem(activities.ID.ToString());
+                li.SubItems.Add(activities.Description);
+                li.SubItems.Add(activities.StartDateTime.ToShortDateString());
+                li.SubItems.Add(activities.EndDateTime.ToShortDateString());
+
+                li.Tag = activities;
+                listViewSupervisorsActivities.Items.Add(li);
+            }
+
+            listViewSupervisorsActivities.Columns[0].Width = 200;
+            listViewSupervisorsActivities.Columns[1].Width = 200;
+            listViewSupervisorsActivities.Columns[2].Width = 200;
+            listViewSupervisorsActivities.Columns[3].Width = 200;
+
+            listViewSupervisorsActivities.View = View.Details;
+        }
+
+        private void rbSupervisorsNotSupervisors_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckingActivity();
+        }
+
+        private void rbSupervisorsSupervisors_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckingActivity();
+        }
+
+        private void CheckingActivity()
+        {
+            if (listViewSupervisorsActivities.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedActivity = listViewSupervisorsActivities.SelectedItems[0];
+
+                Activities activity = (Activities)selectedActivity.Tag;
+
+                if (rbSupervisorsSupervisors.Checked)
+                    DisplaySupervisorsForActivity(activity.ID);
+                else
+                    DisplaySupervisorsForNonActivity(activity.ID);
+
+            }
         }
     }
 }

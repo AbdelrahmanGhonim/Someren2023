@@ -17,7 +17,7 @@ namespace SomerenDAL
 
         public void AddSalesDrink(SalesDrinks salesDrinks)
         {
-            string query = ("INSERT INTO SalesDrinks (StudentId, drinkName) VALUES (@StudentId, @drinkName);");
+            string query = ("INSERT INTO SalesDrinks (StudentId, drinkName) VALUES (@StudentId, @drinkName)");
             SqlParameter[] sqlParameters = {
             new SqlParameter("@StudentId", salesDrinks.StudentId),
             new SqlParameter("@drinkName", salesDrinks.DrinksName),
