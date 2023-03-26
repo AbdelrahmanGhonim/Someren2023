@@ -13,7 +13,7 @@ namespace SomerenDAL
     {
         public List<Teacher> GetAllTeachers() // getting data from database 
         {
-            string query = "SELECT id, name, lecturerNumber, dataOfBirth FROM Lecturers";
+            string query = "SELECT Lecturers.id, name, lecturerNumber, dataOfBirth FROM Lecturers";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -28,11 +28,13 @@ namespace SomerenDAL
                     Id = (int)dr["id"],
                     Name = dr["Name"].ToString(),
                     Number = (int)dr["lecturerNumber"],
-                    DateOfBirth = (DateTime)dr["DataOfBirth"]
+                    DateOfBirth = (DateTime)dr["DataOfBirth"],
                 };
                 teachers.Add(teacher);
             }
             return teachers;
         }
+
+
     }
 }
