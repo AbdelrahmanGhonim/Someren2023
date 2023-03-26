@@ -458,6 +458,7 @@ namespace SomerenUI
         {
             List<Drink> drinks = GetDrinks();
             DisplayDrinks(drinks);
+            clearingTxtBoxes();
         }
 
         private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
@@ -562,6 +563,15 @@ namespace SomerenUI
         private void btSupervisorsRemove_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void clearingTxtBoxes()
+        {
+            txtNameDrinks.Text = "";
+            txtPriceDrinks.Text = "";
+            txtAmountDrinks.Text = "";
+            rbAlkoholicDrinks.Checked = false;
+            rbNonAlkoholicDrinks.Checked = false;
         }
     }
 }
