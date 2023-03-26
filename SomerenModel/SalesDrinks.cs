@@ -10,5 +10,7 @@ namespace SomerenModel
     {
         public int StudentId { get; set; }
         public string DrinksName { get; set; }
+
+        
     }
 }

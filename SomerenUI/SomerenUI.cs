@@ -455,6 +455,7 @@ namespace SomerenUI
         {
             List<Drink> drinks = GetDrinks();
             DisplayDrinks(drinks);
+            clearingTxtBoxes();
         }
 
         private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
@@ -673,6 +674,15 @@ namespace SomerenUI
 
         }
 
+
+        private void clearingTxtBoxes()
+        {
+            txtNameDrinks.Text = "";
+            txtPriceDrinks.Text = "";
+            txtAmountDrinks.Text = "";
+            rbAlkoholicDrinks.Checked = false;
+            rbNonAlkoholicDrinks.Checked = false;
+
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -685,6 +695,7 @@ namespace SomerenUI
 
         private void SomerenUI_Load(object sender, EventArgs e)
         {
+
 
         }
     }
