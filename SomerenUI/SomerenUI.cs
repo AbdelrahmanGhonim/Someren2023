@@ -686,11 +686,16 @@ namespace SomerenUI
 
             try
             {
-                supervisor.ActivityId = activity.ID;
+                if(supervisor.ActivityId == activity.ID)
+                    MessageBox.Show("This Lecturer is already supervising this activity!", "Error");
+                else
+                {
+                    supervisor.ActivityId = activity.ID;
 
-                TeacherService teacherService = new TeacherService();
+                    TeacherService teacherService = new TeacherService();
 
-                teacherService.AddSupervisor(supervisor);
+                    teacherService.AddSupervisor(supervisor);
+                }
             }
             catch (Exception activityexp)
             {
