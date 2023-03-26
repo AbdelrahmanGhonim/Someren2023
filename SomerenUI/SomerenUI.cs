@@ -682,6 +682,7 @@ namespace SomerenUI
             txtAmountDrinks.Text = "";
             rbAlkoholicDrinks.Checked = false;
             rbNonAlkoholicDrinks.Checked = false;
+        }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
