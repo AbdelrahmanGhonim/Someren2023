@@ -3,9 +3,7 @@ using SomerenModel;
 using SomerenService;
 using System;
 using System.Collections.Generic;
-
 using System.ComponentModel.Design;
-
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
@@ -515,8 +513,8 @@ namespace SomerenUI
         }
         public List<Activities> GetActivities()
         { 
-        ActivityService activity=new ActivityService();
-        List<Activities> activities=activity.GetActivities();
+            ActivityService activity=new ActivityService();
+            List<Activities> activities=activity.GetActivities();
             return activities;
         }
 
@@ -589,7 +587,7 @@ namespace SomerenUI
             {
                 ListViewItem selectedItem = listViewActivites.SelectedItems[0];
                 activities.ID = Convert.ToInt32(selectedItem.SubItems[0].Text);
-             activities.Description  = selectedItem.SubItems[1].Text;
+                activities.Description  = selectedItem.SubItems[1].Text;
                 txtActivitiesId.Text = activities.ID.ToString();
                 txtActivitiesDescription.Text = activities.Description;
 
@@ -633,7 +631,7 @@ namespace SomerenUI
             // showing activities panel
             pnlActivities.Show();
             ShowActivities();
-
+            txtActivitiesId.Enabled = false;
         }
 
         private void ShowActivities()
