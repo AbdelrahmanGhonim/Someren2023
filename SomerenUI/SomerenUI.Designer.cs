@@ -659,6 +659,7 @@
             // 
             // txtActivitiesId
             // 
+            this.txtActivitiesId.Enabled = false;
             this.txtActivitiesId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtActivitiesId.Location = new System.Drawing.Point(169, 392);
             this.txtActivitiesId.Name = "txtActivitiesId";
@@ -695,7 +696,7 @@
             this.pnlSupervisors.Controls.Add(this.listViewSupervisorsActivities);
             this.pnlSupervisors.Controls.Add(this.label16);
             this.pnlSupervisors.Controls.Add(this.label15);
-            this.pnlSupervisors.Location = new System.Drawing.Point(10, 36);
+            this.pnlSupervisors.Location = new System.Drawing.Point(11, 33);
             this.pnlSupervisors.Name = "pnlSupervisors";
             this.pnlSupervisors.Size = new System.Drawing.Size(1077, 625);
             this.pnlSupervisors.TabIndex = 16;
