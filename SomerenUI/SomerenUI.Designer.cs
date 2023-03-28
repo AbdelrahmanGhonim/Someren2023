@@ -73,6 +73,15 @@
             this.listViewDrinksCashRegister = new System.Windows.Forms.ListView();
             this.listViewStudentsCashRegister = new System.Windows.Forms.ListView();
             this.pnlActivities = new System.Windows.Forms.Panel();
+            this.pnlSupervisors = new System.Windows.Forms.Panel();
+            this.btSupervisorsRemove = new System.Windows.Forms.Button();
+            this.btSupervisorsAdd = new System.Windows.Forms.Button();
+            this.rbSupervisorsNotSupervisors = new System.Windows.Forms.RadioButton();
+            this.rbSupervisorsSupervisors = new System.Windows.Forms.RadioButton();
+            this.listViewSupervisorsLecturers = new System.Windows.Forms.ListView();
+            this.listViewSupervisorsActivities = new System.Windows.Forms.ListView();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.btActivitiesUpdate = new System.Windows.Forms.Button();
             this.btActivitiesRemove = new System.Windows.Forms.Button();
             this.btActivitiesAdd = new System.Windows.Forms.Button();
@@ -86,15 +95,6 @@
             this.txtActivitiesId = new System.Windows.Forms.TextBox();
             this.listViewActivites = new System.Windows.Forms.ListView();
             this.label10 = new System.Windows.Forms.Label();
-            this.pnlSupervisors = new System.Windows.Forms.Panel();
-            this.btSupervisorsRemove = new System.Windows.Forms.Button();
-            this.btSupervisorsAdd = new System.Windows.Forms.Button();
-            this.rbSupervisorsNotSupervisors = new System.Windows.Forms.RadioButton();
-            this.rbSupervisorsSupervisors = new System.Windows.Forms.RadioButton();
-            this.listViewSupervisorsLecturers = new System.Windows.Forms.ListView();
-            this.listViewSupervisorsActivities = new System.Windows.Forms.ListView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             this.pnlStudents.SuspendLayout();
@@ -563,10 +563,114 @@
             this.pnlActivities.TabIndex = 8;
             this.pnlActivities.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // pnlSupervisors
+            // 
+            this.pnlSupervisors.Controls.Add(this.btSupervisorsRemove);
+            this.pnlSupervisors.Controls.Add(this.btSupervisorsAdd);
+            this.pnlSupervisors.Controls.Add(this.rbSupervisorsNotSupervisors);
+            this.pnlSupervisors.Controls.Add(this.rbSupervisorsSupervisors);
+            this.pnlSupervisors.Controls.Add(this.listViewSupervisorsLecturers);
+            this.pnlSupervisors.Controls.Add(this.listViewSupervisorsActivities);
+            this.pnlSupervisors.Controls.Add(this.label16);
+            this.pnlSupervisors.Controls.Add(this.label15);
+            this.pnlSupervisors.Location = new System.Drawing.Point(0, 30);
+            this.pnlSupervisors.Name = "pnlSupervisors";
+            this.pnlSupervisors.Size = new System.Drawing.Size(1077, 625);
+            this.pnlSupervisors.TabIndex = 16;
+            // 
+            // btSupervisorsRemove
+            // 
+            this.btSupervisorsRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btSupervisorsRemove.Location = new System.Drawing.Point(615, 477);
+            this.btSupervisorsRemove.Name = "btSupervisorsRemove";
+            this.btSupervisorsRemove.Size = new System.Drawing.Size(148, 62);
+            this.btSupervisorsRemove.TabIndex = 7;
+            this.btSupervisorsRemove.Text = "Remove";
+            this.btSupervisorsRemove.UseVisualStyleBackColor = true;
+            this.btSupervisorsRemove.Click += new System.EventHandler(this.btSupervisorsRemove_Click);
+            // 
+            // btSupervisorsAdd
+            // 
+            this.btSupervisorsAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btSupervisorsAdd.Location = new System.Drawing.Point(324, 475);
+            this.btSupervisorsAdd.Name = "btSupervisorsAdd";
+            this.btSupervisorsAdd.Size = new System.Drawing.Size(148, 62);
+            this.btSupervisorsAdd.TabIndex = 6;
+            this.btSupervisorsAdd.Text = "Add";
+            this.btSupervisorsAdd.UseVisualStyleBackColor = true;
+            this.btSupervisorsAdd.Click += new System.EventHandler(this.btSupervisorsAdd_Click);
+            // 
+            // rbSupervisorsNotSupervisors
+            // 
+            this.rbSupervisorsNotSupervisors.AutoSize = true;
+            this.rbSupervisorsNotSupervisors.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rbSupervisorsNotSupervisors.Location = new System.Drawing.Point(886, 321);
+            this.rbSupervisorsNotSupervisors.Name = "rbSupervisorsNotSupervisors";
+            this.rbSupervisorsNotSupervisors.Size = new System.Drawing.Size(173, 32);
+            this.rbSupervisorsNotSupervisors.TabIndex = 5;
+            this.rbSupervisorsNotSupervisors.TabStop = true;
+            this.rbSupervisorsNotSupervisors.Text = "Not Supervisors";
+            this.rbSupervisorsNotSupervisors.UseVisualStyleBackColor = true;
+            this.rbSupervisorsNotSupervisors.CheckedChanged += new System.EventHandler(this.rbSupervisorsNotSupervisors_CheckedChanged);
+            // 
+            // rbSupervisorsSupervisors
+            // 
+            this.rbSupervisorsSupervisors.AutoSize = true;
+            this.rbSupervisorsSupervisors.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rbSupervisorsSupervisors.Location = new System.Drawing.Point(621, 321);
+            this.rbSupervisorsSupervisors.Name = "rbSupervisorsSupervisors";
+            this.rbSupervisorsSupervisors.Size = new System.Drawing.Size(134, 32);
+            this.rbSupervisorsSupervisors.TabIndex = 4;
+            this.rbSupervisorsSupervisors.TabStop = true;
+            this.rbSupervisorsSupervisors.Text = "Supervisors";
+            this.rbSupervisorsSupervisors.UseVisualStyleBackColor = true;
+            this.rbSupervisorsSupervisors.CheckedChanged += new System.EventHandler(this.rbSupervisorsSupervisors_CheckedChanged);
+            // 
+            // listViewSupervisorsLecturers
+            // 
+            this.listViewSupervisorsLecturers.FullRowSelect = true;
+            this.listViewSupervisorsLecturers.Location = new System.Drawing.Point(615, 62);
+            this.listViewSupervisorsLecturers.Name = "listViewSupervisorsLecturers";
+            this.listViewSupervisorsLecturers.Size = new System.Drawing.Size(444, 239);
+            this.listViewSupervisorsLecturers.TabIndex = 3;
+            this.listViewSupervisorsLecturers.UseCompatibleStateImageBehavior = false;
+            this.listViewSupervisorsLecturers.SelectedIndexChanged += new System.EventHandler(this.listViewSupervisorsLecturers_SelectedIndexChanged);
+            // 
+            // listViewSupervisorsActivities
+            // 
+            this.listViewSupervisorsActivities.FullRowSelect = true;
+            this.listViewSupervisorsActivities.Location = new System.Drawing.Point(28, 62);
+            this.listViewSupervisorsActivities.Name = "listViewSupervisorsActivities";
+            this.listViewSupervisorsActivities.Size = new System.Drawing.Size(444, 239);
+            this.listViewSupervisorsActivities.TabIndex = 2;
+            this.listViewSupervisorsActivities.UseCompatibleStateImageBehavior = false;
+            this.listViewSupervisorsActivities.SelectedIndexChanged += new System.EventHandler(this.listViewSupervisorsActivities_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label16.Location = new System.Drawing.Point(628, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(90, 28);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Lecturers";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(28, 15);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(91, 28);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Activities";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
             // btActivitiesUpdate
             // 
             this.btActivitiesUpdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btActivitiesUpdate.Location = new System.Drawing.Point(836, 536);
+            this.btActivitiesUpdate.Location = new System.Drawing.Point(836, 524);
             this.btActivitiesUpdate.Name = "btActivitiesUpdate";
             this.btActivitiesUpdate.Size = new System.Drawing.Size(132, 47);
             this.btActivitiesUpdate.TabIndex = 15;
@@ -577,7 +681,7 @@
             // btActivitiesRemove
             // 
             this.btActivitiesRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btActivitiesRemove.Location = new System.Drawing.Point(836, 460);
+            this.btActivitiesRemove.Location = new System.Drawing.Point(836, 456);
             this.btActivitiesRemove.Name = "btActivitiesRemove";
             this.btActivitiesRemove.Size = new System.Drawing.Size(132, 47);
             this.btActivitiesRemove.TabIndex = 14;
@@ -588,7 +692,7 @@
             // btActivitiesAdd
             // 
             this.btActivitiesAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btActivitiesAdd.Location = new System.Drawing.Point(836, 392);
+            this.btActivitiesAdd.Location = new System.Drawing.Point(836, 388);
             this.btActivitiesAdd.Name = "btActivitiesAdd";
             this.btActivitiesAdd.Size = new System.Drawing.Size(132, 47);
             this.btActivitiesAdd.TabIndex = 13;
@@ -685,110 +789,6 @@
             this.label10.Size = new System.Drawing.Size(86, 28);
             this.label10.TabIndex = 0;
             this.label10.Text = "Activites";
-            // 
-            // pnlSupervisors
-            // 
-            this.pnlSupervisors.Controls.Add(this.btSupervisorsRemove);
-            this.pnlSupervisors.Controls.Add(this.btSupervisorsAdd);
-            this.pnlSupervisors.Controls.Add(this.rbSupervisorsNotSupervisors);
-            this.pnlSupervisors.Controls.Add(this.rbSupervisorsSupervisors);
-            this.pnlSupervisors.Controls.Add(this.listViewSupervisorsLecturers);
-            this.pnlSupervisors.Controls.Add(this.listViewSupervisorsActivities);
-            this.pnlSupervisors.Controls.Add(this.label16);
-            this.pnlSupervisors.Controls.Add(this.label15);
-            this.pnlSupervisors.Location = new System.Drawing.Point(11, 33);
-            this.pnlSupervisors.Name = "pnlSupervisors";
-            this.pnlSupervisors.Size = new System.Drawing.Size(1077, 625);
-            this.pnlSupervisors.TabIndex = 16;
-            // 
-            // btSupervisorsRemove
-            // 
-            this.btSupervisorsRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btSupervisorsRemove.Location = new System.Drawing.Point(615, 477);
-            this.btSupervisorsRemove.Name = "btSupervisorsRemove";
-            this.btSupervisorsRemove.Size = new System.Drawing.Size(148, 62);
-            this.btSupervisorsRemove.TabIndex = 7;
-            this.btSupervisorsRemove.Text = "Remove";
-            this.btSupervisorsRemove.UseVisualStyleBackColor = true;
-            this.btSupervisorsRemove.Click += new System.EventHandler(this.btSupervisorsRemove_Click);
-            // 
-            // btSupervisorsAdd
-            // 
-            this.btSupervisorsAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btSupervisorsAdd.Location = new System.Drawing.Point(324, 475);
-            this.btSupervisorsAdd.Name = "btSupervisorsAdd";
-            this.btSupervisorsAdd.Size = new System.Drawing.Size(148, 62);
-            this.btSupervisorsAdd.TabIndex = 6;
-            this.btSupervisorsAdd.Text = "Add";
-            this.btSupervisorsAdd.UseVisualStyleBackColor = true;
-            this.btSupervisorsAdd.Click += new System.EventHandler(this.btSupervisorsAdd_Click);
-            // 
-            // rbSupervisorsNotSupervisors
-            // 
-            this.rbSupervisorsNotSupervisors.AutoSize = true;
-            this.rbSupervisorsNotSupervisors.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rbSupervisorsNotSupervisors.Location = new System.Drawing.Point(886, 321);
-            this.rbSupervisorsNotSupervisors.Name = "rbSupervisorsNotSupervisors";
-            this.rbSupervisorsNotSupervisors.Size = new System.Drawing.Size(173, 32);
-            this.rbSupervisorsNotSupervisors.TabIndex = 5;
-            this.rbSupervisorsNotSupervisors.TabStop = true;
-            this.rbSupervisorsNotSupervisors.Text = "Not Supervisors";
-            this.rbSupervisorsNotSupervisors.UseVisualStyleBackColor = true;
-            this.rbSupervisorsNotSupervisors.CheckedChanged += new System.EventHandler(this.rbSupervisorsNotSupervisors_CheckedChanged);
-            // 
-            // rbSupervisorsSupervisors
-            // 
-            this.rbSupervisorsSupervisors.AutoSize = true;
-            this.rbSupervisorsSupervisors.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rbSupervisorsSupervisors.Location = new System.Drawing.Point(621, 321);
-            this.rbSupervisorsSupervisors.Name = "rbSupervisorsSupervisors";
-            this.rbSupervisorsSupervisors.Size = new System.Drawing.Size(134, 32);
-            this.rbSupervisorsSupervisors.TabIndex = 4;
-            this.rbSupervisorsSupervisors.TabStop = true;
-            this.rbSupervisorsSupervisors.Text = "Supervisors";
-            this.rbSupervisorsSupervisors.UseVisualStyleBackColor = true;
-            this.rbSupervisorsSupervisors.CheckedChanged += new System.EventHandler(this.rbSupervisorsSupervisors_CheckedChanged);
-            // 
-            // listViewSupervisorsLecturers
-            // 
-            this.listViewSupervisorsLecturers.FullRowSelect = true;
-            this.listViewSupervisorsLecturers.Location = new System.Drawing.Point(615, 62);
-            this.listViewSupervisorsLecturers.Name = "listViewSupervisorsLecturers";
-            this.listViewSupervisorsLecturers.Size = new System.Drawing.Size(444, 239);
-            this.listViewSupervisorsLecturers.TabIndex = 3;
-            this.listViewSupervisorsLecturers.UseCompatibleStateImageBehavior = false;
-            this.listViewSupervisorsLecturers.SelectedIndexChanged += new System.EventHandler(this.listViewSupervisorsLecturers_SelectedIndexChanged);
-            // 
-            // listViewSupervisorsActivities
-            // 
-            this.listViewSupervisorsActivities.FullRowSelect = true;
-            this.listViewSupervisorsActivities.Location = new System.Drawing.Point(28, 62);
-            this.listViewSupervisorsActivities.Name = "listViewSupervisorsActivities";
-            this.listViewSupervisorsActivities.Size = new System.Drawing.Size(444, 239);
-            this.listViewSupervisorsActivities.TabIndex = 2;
-            this.listViewSupervisorsActivities.UseCompatibleStateImageBehavior = false;
-            this.listViewSupervisorsActivities.SelectedIndexChanged += new System.EventHandler(this.listViewSupervisorsActivities_SelectedIndexChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(628, 15);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(90, 28);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "Lecturers";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(28, 15);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(91, 28);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Activities";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // SomerenUI
             // 
