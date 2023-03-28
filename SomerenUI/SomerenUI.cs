@@ -560,6 +560,7 @@ namespace SomerenUI
                 // refresh
                 List<Activities> activity = GetActivities();
                 DisplayActivities(activity);
+                clearActivities();
             }
             catch (Exception activityexp)
             {
@@ -572,11 +573,20 @@ namespace SomerenUI
         private Activities GettingDataOfActivity()
         {
             Activities activities = new Activities();
-            activities.ID = int.Parse(txtActivitiesId.Text);
+            if (txtActivitiesId.Text == String.Empty)
+                activities.ID = NumberOfActivities() + 1;
+            else
+                activities.ID = int.Parse(txtActivitiesId.Text);
             activities.Description = txtActivitiesDescription.Text;
             activities.StartDateTime = DateTime.Parse(dateActivitiesStart.Text);
             activities.EndDateTime = DateTime.Parse(dateActivitiesEnd.Text);
             return activities;
+        }
+
+        private int NumberOfActivities()
+        {
+            List<Activities> activities = GetActivities();
+            return activities.Count;
         }
 
         private void btActivitiesRemove_Click(object sender, EventArgs e)
@@ -602,6 +612,7 @@ namespace SomerenUI
             }
             List<Activities> activity = GetActivities();
             DisplayActivities(activity);
+            clearActivities();
 
         }
 
@@ -620,6 +631,7 @@ namespace SomerenUI
 
             List<Activities> activity = GetActivities();
             DisplayActivities(activity);
+            clearActivities();
 
         }
 
@@ -631,7 +643,7 @@ namespace SomerenUI
             // showing activities panel
             pnlActivities.Show();
             ShowActivities();
-            txtActivitiesId.Enabled = false;
+            txtActivitiesId.Enabled = true;
         }
 
         private void ShowActivities()
@@ -893,6 +905,17 @@ namespace SomerenUI
                     DisplaySupervisorsForNonActivity(activity.ID);
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            clearActivities();
+        }
+
+        private void clearActivities()
+        {
+            txtActivitiesId.Text = string.Empty;
+            txtActivitiesDescription.Text = string.Empty;
         }
     }
 }
