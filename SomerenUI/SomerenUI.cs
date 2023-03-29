@@ -573,10 +573,7 @@ namespace SomerenUI
         private Activities GettingDataOfActivity()
         {
             Activities activities = new Activities();
-            if (txtActivitiesId.Text == String.Empty)
-                activities.ID = NumberOfActivities() + 1;
-            else
-                activities.ID = int.Parse(txtActivitiesId.Text);
+            activities.ID = int.Parse(txtActivitiesId.Text);
             activities.Description = txtActivitiesDescription.Text;
             activities.StartDateTime = DateTime.Parse(dateActivitiesStart.Text);
             activities.EndDateTime = DateTime.Parse(dateActivitiesEnd.Text);
@@ -591,25 +588,21 @@ namespace SomerenUI
 
         private void btActivitiesRemove_Click(object sender, EventArgs e)
         {
-            Activities activities = new Activities();
-
-            if (listViewActivites.SelectedItems.Count > 0)
-            {
-                ListViewItem selectedItem = listViewActivites.SelectedItems[0];
-                activities.ID = Convert.ToInt32(selectedItem.SubItems[0].Text);
-                activities.Description  = selectedItem.SubItems[1].Text;
-                txtActivitiesId.Text = activities.ID.ToString();
-                txtActivitiesDescription.Text = activities.Description;
-
-            }
-            ActivityService activityService = new ActivityService();
+            if (listViewActivites.SelectedItems.Count == 0)
+                return;
 
             DialogResult result = MessageBox.Show("Are you sure you want to remove this activity?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.No)
             {
-                activityService.RemoveActivity(activities);
+                return;
             }
+
+            Activities selectedActivity = (Activities)listViewActivites.SelectedItems[0].Tag;
+
+            ActivityService activityService = new ActivityService();
+
+            activityService.RemoveActivity(selectedActivity);
             List<Activities> activity = GetActivities();
             DisplayActivities(activity);
             clearActivities();
