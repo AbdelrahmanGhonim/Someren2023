@@ -360,6 +360,13 @@ namespace SomerenUI
             try
             {
                 Drink drink = GettingDataOfDrink();
+                List<Drink> drinks = GetDrinks();
+                foreach (Drink drinkDrink in drinks)
+                {
+                    if(drinkDrink.Name == drink.Name)
+                        throw new Exception("That drink already exists!");
+                }
+
                 DrinkService drinkService = new DrinkService();
                 drinkService.AddDrink(drink);
             }
@@ -376,6 +383,9 @@ namespace SomerenUI
         {
             try
             {
+                DialogResult result = MessageBox.Show("Are you sure you want to remove this drink?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                    return;
                 Drink drink = GettingDataOfDrink();
                 if (drink.Amount == 0)
                     throw new Exception("There is no more left!");
@@ -524,8 +534,8 @@ namespace SomerenUI
 
             listViewActivites.Columns.Add("ID", 150);
             listViewActivites.Columns.Add("Description", 200);
-            listViewActivites.Columns.Add("StartDateTime", 200);
-            listViewActivites.Columns.Add("EndDateTime", 200);
+            listViewActivites.Columns.Add("StartDateTime", 300);
+            listViewActivites.Columns.Add("EndDateTime", 300);
 
             // displaying activities in List 
 
@@ -533,8 +543,8 @@ namespace SomerenUI
             {
                 ListViewItem li = new ListViewItem(activities.ID.ToString());
                 li.SubItems.Add(activities.Description);
-                li.SubItems.Add(activities.StartDateTime.ToShortDateString());
-                li.SubItems.Add(activities.EndDateTime.ToShortDateString());
+                li.SubItems.Add(activities.StartDateTime.ToString());
+                li.SubItems.Add(activities.EndDateTime.ToString());
 
                 li.Tag = activities;
                 listViewActivites.Items.Add(li);
@@ -542,8 +552,8 @@ namespace SomerenUI
 
             listViewActivites.Columns[0].Width = 200;
             listViewActivites.Columns[1].Width = 200;
-            listViewActivites.Columns[2].Width = 200;
-            listViewActivites.Columns[3].Width = 200;
+            listViewActivites.Columns[2].Width = 300;
+            listViewActivites.Columns[3].Width = 300;
 
             listViewActivites.View = View.Details;
         }
