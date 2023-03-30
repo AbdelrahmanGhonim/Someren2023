@@ -73,15 +73,6 @@
             this.listViewDrinksCashRegister = new System.Windows.Forms.ListView();
             this.listViewStudentsCashRegister = new System.Windows.Forms.ListView();
             this.pnlActivities = new System.Windows.Forms.Panel();
-            this.pnlSupervisors = new System.Windows.Forms.Panel();
-            this.btSupervisorsRemove = new System.Windows.Forms.Button();
-            this.btSupervisorsAdd = new System.Windows.Forms.Button();
-            this.rbSupervisorsNotSupervisors = new System.Windows.Forms.RadioButton();
-            this.rbSupervisorsSupervisors = new System.Windows.Forms.RadioButton();
-            this.listViewSupervisorsLecturers = new System.Windows.Forms.ListView();
-            this.listViewSupervisorsActivities = new System.Windows.Forms.ListView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.btActivitiesUpdate = new System.Windows.Forms.Button();
             this.btActivitiesRemove = new System.Windows.Forms.Button();
             this.btActivitiesAdd = new System.Windows.Forms.Button();
@@ -95,6 +86,15 @@
             this.txtActivitiesId = new System.Windows.Forms.TextBox();
             this.listViewActivites = new System.Windows.Forms.ListView();
             this.label10 = new System.Windows.Forms.Label();
+            this.pnlSupervisors = new System.Windows.Forms.Panel();
+            this.btSupervisorsRemove = new System.Windows.Forms.Button();
+            this.btSupervisorsAdd = new System.Windows.Forms.Button();
+            this.rbSupervisorsNotSupervisors = new System.Windows.Forms.RadioButton();
+            this.rbSupervisorsSupervisors = new System.Windows.Forms.RadioButton();
+            this.listViewSupervisorsLecturers = new System.Windows.Forms.ListView();
+            this.listViewSupervisorsActivities = new System.Windows.Forms.ListView();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             this.pnlStudents.SuspendLayout();
@@ -563,6 +563,133 @@
             this.pnlActivities.TabIndex = 8;
             this.pnlActivities.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // btActivitiesUpdate
+            // 
+            this.btActivitiesUpdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btActivitiesUpdate.Location = new System.Drawing.Point(836, 524);
+            this.btActivitiesUpdate.Name = "btActivitiesUpdate";
+            this.btActivitiesUpdate.Size = new System.Drawing.Size(132, 47);
+            this.btActivitiesUpdate.TabIndex = 15;
+            this.btActivitiesUpdate.Text = "Update";
+            this.btActivitiesUpdate.UseVisualStyleBackColor = true;
+            this.btActivitiesUpdate.Click += new System.EventHandler(this.btActivitiesUpdate_Click);
+            // 
+            // btActivitiesRemove
+            // 
+            this.btActivitiesRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btActivitiesRemove.Location = new System.Drawing.Point(836, 456);
+            this.btActivitiesRemove.Name = "btActivitiesRemove";
+            this.btActivitiesRemove.Size = new System.Drawing.Size(132, 47);
+            this.btActivitiesRemove.TabIndex = 14;
+            this.btActivitiesRemove.Text = "Remove";
+            this.btActivitiesRemove.UseVisualStyleBackColor = true;
+            this.btActivitiesRemove.Click += new System.EventHandler(this.btActivitiesRemove_Click);
+            // 
+            // btActivitiesAdd
+            // 
+            this.btActivitiesAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btActivitiesAdd.Location = new System.Drawing.Point(836, 388);
+            this.btActivitiesAdd.Name = "btActivitiesAdd";
+            this.btActivitiesAdd.Size = new System.Drawing.Size(132, 47);
+            this.btActivitiesAdd.TabIndex = 13;
+            this.btActivitiesAdd.Text = "Add";
+            this.btActivitiesAdd.UseVisualStyleBackColor = true;
+            this.btActivitiesAdd.Click += new System.EventHandler(this.btActivitiesAdd_Click);
+            // 
+            // dateActivitiesEnd
+            // 
+            this.dateActivitiesEnd.CustomFormat = "d/M/yyyy hh: mm tt";
+            this.dateActivitiesEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateActivitiesEnd.Location = new System.Drawing.Point(169, 564);
+            this.dateActivitiesEnd.Name = "dateActivitiesEnd";
+            this.dateActivitiesEnd.Size = new System.Drawing.Size(250, 27);
+            this.dateActivitiesEnd.TabIndex = 12;
+            // 
+            // dateActivitiesStart
+            // 
+            this.dateActivitiesStart.CustomFormat = "d/M/yyyy hh: mm tt";
+            this.dateActivitiesStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateActivitiesStart.Location = new System.Drawing.Point(169, 515);
+            this.dateActivitiesStart.Name = "dateActivitiesStart";
+            this.dateActivitiesStart.Size = new System.Drawing.Size(252, 27);
+            this.dateActivitiesStart.TabIndex = 11;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(20, 454);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(112, 28);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "Description";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(21, 511);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 28);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Start Date";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(21, 564);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(91, 28);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "End Date";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(20, 392);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(31, 28);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "ID";
+            // 
+            // txtActivitiesDescription
+            // 
+            this.txtActivitiesDescription.Location = new System.Drawing.Point(169, 454);
+            this.txtActivitiesDescription.Name = "txtActivitiesDescription";
+            this.txtActivitiesDescription.Size = new System.Drawing.Size(259, 27);
+            this.txtActivitiesDescription.TabIndex = 3;
+            // 
+            // txtActivitiesId
+            // 
+            this.txtActivitiesId.Enabled = false;
+            this.txtActivitiesId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtActivitiesId.Location = new System.Drawing.Point(169, 392);
+            this.txtActivitiesId.Name = "txtActivitiesId";
+            this.txtActivitiesId.Size = new System.Drawing.Size(125, 34);
+            this.txtActivitiesId.TabIndex = 2;
+            // 
+            // listViewActivites
+            // 
+            this.listViewActivites.FullRowSelect = true;
+            this.listViewActivites.Location = new System.Drawing.Point(20, 62);
+            this.listViewActivites.Name = "listViewActivites";
+            this.listViewActivites.Size = new System.Drawing.Size(1040, 252);
+            this.listViewActivites.TabIndex = 1;
+            this.listViewActivites.UseCompatibleStateImageBehavior = false;
+            this.listViewActivites.SelectedIndexChanged += new System.EventHandler(this.listViewActivites_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(21, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(86, 28);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Activites";
+            // 
             // pnlSupervisors
             // 
             this.pnlSupervisors.Controls.Add(this.btSupervisorsRemove);
@@ -573,7 +700,7 @@
             this.pnlSupervisors.Controls.Add(this.listViewSupervisorsActivities);
             this.pnlSupervisors.Controls.Add(this.label16);
             this.pnlSupervisors.Controls.Add(this.label15);
-            this.pnlSupervisors.Location = new System.Drawing.Point(0, 30);
+            this.pnlSupervisors.Location = new System.Drawing.Point(10, 31);
             this.pnlSupervisors.Name = "pnlSupervisors";
             this.pnlSupervisors.Size = new System.Drawing.Size(1077, 625);
             this.pnlSupervisors.TabIndex = 16;
@@ -666,129 +793,6 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Activities";
             this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
-            // btActivitiesUpdate
-            // 
-            this.btActivitiesUpdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btActivitiesUpdate.Location = new System.Drawing.Point(836, 524);
-            this.btActivitiesUpdate.Name = "btActivitiesUpdate";
-            this.btActivitiesUpdate.Size = new System.Drawing.Size(132, 47);
-            this.btActivitiesUpdate.TabIndex = 15;
-            this.btActivitiesUpdate.Text = "Update";
-            this.btActivitiesUpdate.UseVisualStyleBackColor = true;
-            this.btActivitiesUpdate.Click += new System.EventHandler(this.btActivitiesUpdate_Click);
-            // 
-            // btActivitiesRemove
-            // 
-            this.btActivitiesRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btActivitiesRemove.Location = new System.Drawing.Point(836, 456);
-            this.btActivitiesRemove.Name = "btActivitiesRemove";
-            this.btActivitiesRemove.Size = new System.Drawing.Size(132, 47);
-            this.btActivitiesRemove.TabIndex = 14;
-            this.btActivitiesRemove.Text = "Remove";
-            this.btActivitiesRemove.UseVisualStyleBackColor = true;
-            this.btActivitiesRemove.Click += new System.EventHandler(this.btActivitiesRemove_Click);
-            // 
-            // btActivitiesAdd
-            // 
-            this.btActivitiesAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btActivitiesAdd.Location = new System.Drawing.Point(836, 388);
-            this.btActivitiesAdd.Name = "btActivitiesAdd";
-            this.btActivitiesAdd.Size = new System.Drawing.Size(132, 47);
-            this.btActivitiesAdd.TabIndex = 13;
-            this.btActivitiesAdd.Text = "Add";
-            this.btActivitiesAdd.UseVisualStyleBackColor = true;
-            this.btActivitiesAdd.Click += new System.EventHandler(this.btActivitiesAdd_Click);
-            // 
-            // dateActivitiesEnd
-            // 
-            this.dateActivitiesEnd.Location = new System.Drawing.Point(169, 564);
-            this.dateActivitiesEnd.Name = "dateActivitiesEnd";
-            this.dateActivitiesEnd.Size = new System.Drawing.Size(250, 27);
-            this.dateActivitiesEnd.TabIndex = 12;
-            // 
-            // dateActivitiesStart
-            // 
-            this.dateActivitiesStart.Location = new System.Drawing.Point(169, 515);
-            this.dateActivitiesStart.Name = "dateActivitiesStart";
-            this.dateActivitiesStart.Size = new System.Drawing.Size(252, 27);
-            this.dateActivitiesStart.TabIndex = 11;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(20, 454);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(112, 28);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "Description";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(21, 511);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(99, 28);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Start Date";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(21, 564);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(91, 28);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "End Date";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(20, 392);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(31, 28);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "ID";
-            // 
-            // txtActivitiesDescription
-            // 
-            this.txtActivitiesDescription.Location = new System.Drawing.Point(169, 454);
-            this.txtActivitiesDescription.Name = "txtActivitiesDescription";
-            this.txtActivitiesDescription.Size = new System.Drawing.Size(259, 27);
-            this.txtActivitiesDescription.TabIndex = 3;
-            // 
-            // txtActivitiesId
-            // 
-            this.txtActivitiesId.Enabled = false;
-            this.txtActivitiesId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtActivitiesId.Location = new System.Drawing.Point(169, 392);
-            this.txtActivitiesId.Name = "txtActivitiesId";
-            this.txtActivitiesId.Size = new System.Drawing.Size(125, 34);
-            this.txtActivitiesId.TabIndex = 2;
-            // 
-            // listViewActivites
-            // 
-            this.listViewActivites.FullRowSelect = true;
-            this.listViewActivites.Location = new System.Drawing.Point(20, 62);
-            this.listViewActivites.Name = "listViewActivites";
-            this.listViewActivites.Size = new System.Drawing.Size(1040, 252);
-            this.listViewActivites.TabIndex = 1;
-            this.listViewActivites.UseCompatibleStateImageBehavior = false;
-            this.listViewActivites.SelectedIndexChanged += new System.EventHandler(this.listViewActivites_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(21, 15);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(86, 28);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Activites";
             // 
             // SomerenUI
             // 
