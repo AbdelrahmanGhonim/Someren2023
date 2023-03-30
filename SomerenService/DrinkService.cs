@@ -20,8 +20,7 @@ namespace SomerenService
 
         public List<Drink> GetDrinks() 
         {
-            List<Drink> drinks = drinksdb.GetAllDrinks();
-            return drinks;
+            return drinksdb.GetAllDrinks();
         }
 
         public void  UpdateAmountInStock(Drink drinkAmoiunt)

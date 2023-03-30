@@ -126,11 +126,6 @@ namespace SomerenUI
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowLecturersPanel();
@@ -192,16 +187,6 @@ namespace SomerenUI
             listViewLecturers.Columns[3].Width = 200;
 
             listViewLecturers.View = View.Details;
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            // unused
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            // usused
         }
 
         private void drinksSuppliesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -456,11 +441,6 @@ namespace SomerenUI
             }
         }
 
-        private void listViewStudentsCashRegister_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void UpdateDrinks()
         {
             List<Drink> drinks = GetDrinks();
@@ -502,11 +482,6 @@ namespace SomerenUI
                 throw new Exception("You need to choose if drink is Alcoholic or not");
 
             return drink;
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void listViewActivites_SelectedIndexChanged(object sender, EventArgs e)
@@ -590,12 +565,6 @@ namespace SomerenUI
             return activities;
         }
 
-        private int NumberOfActivities()
-        {
-            List<Activities> activities = GetActivities();
-            return activities.Count;
-        }
-
         private void btActivitiesRemove_Click(object sender, EventArgs e)
         {
             if (listViewActivites.SelectedItems.Count == 0)
@@ -674,19 +643,9 @@ namespace SomerenUI
             ShowSupervisors();
         }
 
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void listViewSupervisorsActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
             CheckingActivity();
-        }
-
-        private void listViewSupervisorsLecturers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btSupervisorsAdd_Click(object sender, EventArgs e)
@@ -760,22 +719,6 @@ namespace SomerenUI
             txtAmountDrinks.Text = "";
             rbAlkoholicDrinks.Checked = false;
             rbNonAlkoholicDrinks.Checked = false;
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void listViewDrinksCashRegister_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SomerenUI_Load(object sender, EventArgs e)
-        {
-
-
         }
 
         private void ShowSupervisors()

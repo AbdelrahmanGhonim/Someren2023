@@ -125,7 +125,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1099, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // dashboardToolStripMenuItem
             // 
@@ -295,7 +294,6 @@
             this.label2.Size = new System.Drawing.Size(138, 41);
             this.label2.TabIndex = 0;
             this.label2.Text = "Lecturers";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pnlDrinks
             // 
@@ -371,8 +369,7 @@
             this.rbNonAlkoholicDrinks.TabIndex = 10;
             this.rbNonAlkoholicDrinks.TabStop = true;
             this.rbNonAlkoholicDrinks.Text = "Non Alkoholic";
-            this.rbNonAlkoholicDrinks.UseVisualStyleBackColor = true;
-            this.rbNonAlkoholicDrinks.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.rbNonAlkoholicDrinks.UseVisualStyleBackColor = true; 
             // 
             // rbAlkoholicDrinks
             // 
@@ -384,8 +381,7 @@
             this.rbAlkoholicDrinks.TabIndex = 9;
             this.rbAlkoholicDrinks.TabStop = true;
             this.rbAlkoholicDrinks.Text = "Alcoholic";
-            this.rbAlkoholicDrinks.UseVisualStyleBackColor = true;
-            this.rbAlkoholicDrinks.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rbAlkoholicDrinks.UseVisualStyleBackColor = true; 
             // 
             // label5
             // 
@@ -529,7 +525,6 @@
             this.listViewDrinksCashRegister.Size = new System.Drawing.Size(464, 336);
             this.listViewDrinksCashRegister.TabIndex = 2;
             this.listViewDrinksCashRegister.UseCompatibleStateImageBehavior = false;
-            this.listViewDrinksCashRegister.SelectedIndexChanged += new System.EventHandler(this.listViewDrinksCashRegister_SelectedIndexChanged);
             // 
             // listViewStudentsCashRegister
             // 
@@ -540,7 +535,6 @@
             this.listViewStudentsCashRegister.Size = new System.Drawing.Size(491, 336);
             this.listViewStudentsCashRegister.TabIndex = 1;
             this.listViewStudentsCashRegister.UseCompatibleStateImageBehavior = false;
-            this.listViewStudentsCashRegister.SelectedIndexChanged += new System.EventHandler(this.listViewStudentsCashRegister_SelectedIndexChanged);
             // 
             // pnlActivities
             // 
@@ -561,7 +555,6 @@
             this.pnlActivities.Name = "pnlActivities";
             this.pnlActivities.Size = new System.Drawing.Size(1075, 624);
             this.pnlActivities.TabIndex = 8;
-            this.pnlActivities.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btActivitiesUpdate
             // 
@@ -761,7 +754,6 @@
             this.listViewSupervisorsLecturers.Size = new System.Drawing.Size(444, 239);
             this.listViewSupervisorsLecturers.TabIndex = 3;
             this.listViewSupervisorsLecturers.UseCompatibleStateImageBehavior = false;
-            this.listViewSupervisorsLecturers.SelectedIndexChanged += new System.EventHandler(this.listViewSupervisorsLecturers_SelectedIndexChanged);
             // 
             // listViewSupervisorsActivities
             // 
@@ -792,7 +784,6 @@
             this.label15.Size = new System.Drawing.Size(91, 28);
             this.label15.TabIndex = 0;
             this.label15.Text = "Activities";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // SomerenUI
             // 
@@ -811,7 +802,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SomerenUI";
             this.Text = "SomerenApp";
-            this.Load += new System.EventHandler(this.SomerenUI_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pnlDashboard.ResumeLayout(false);
